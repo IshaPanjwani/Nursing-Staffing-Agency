@@ -1,40 +1,45 @@
-<h1>Part 1: CMS Data Exercise - Payroll Based Journal (PBJ) Daily Nurse Staffing</h1>
+# Nurse Staffing Agency
+# CMS Data - Payroll Based Journal (PBJ) Daily Nurse Staffing
 ---
-### Recommendations for the Sales Leadership Team
+## Recommendations for the Sales Leadership Team
 
-1. *Optimize Contractor Utilization in the Northeast Region*
+1. Optimize Contractor Utilization in the Northeast Region*
    - With the highest contractor hours percentage (13%), the Northeast region represents a significant opportunity Staffing Agencies.
 
-2. *Focus on Medicaid Contractor Staffing for Illinois and West Virginia*
+2. Focus on Medicaid Contractor Staffing for Illinois and West Virginia*
    - Data highlights a general trend of low contractor reliance for Medical Aides / Technician across most states, which is negligible, but IL (79%) and WV (100%) have higher demands for contractors.
 
-3. *Prioritize staffing for Certified Nursing Assistants (CNAs), Licensed Practical Nurses (LPNs), and Registered Nurses (RNs)*
+3. Prioritize staffing for Certified Nursing Assistants (CNAs), Licensed Practical Nurses (LPNs), and Registered Nurses (RNs)
    - These roles currently show significant contractor utilization
 
-4. *Strengthen Partnerships with Government Sectors*
+4. Strengthen Partnerships with Government Sectors
    - Data indicates that government sectors employ the highest concentration of contract workers.
-<br>
-<br>
 ---
 
 
-<h3>Analysis For Recommendation 1: Optimize Contractor Utilization in the Northeast Region</h3>
-# Import libraries 
+### Analysis For Recommendation 1: Optimize Contractor Utilization in the Northeast Region
+
+## Import libraries 
+```
 import pandas as pd 
 import matplotlib.pyplot as plt
 import seaborn as sns
+```
 
-# load dataset
-# The dataset provided 'Payroll Based Journal Daily Nursing Staff' as linked here (https://data.cms.gov/quality-of-care/payroll-based-journal-daily-nurse-staffing/data)
-# Supportive dataset 'Skilled Nursing Facility Quality Reporting Program Provider' as linked here (https://data.cms.gov/provider-data/dataset/fykj-qjee) - for CMS Region Data
-# Supportive dataset 'Provider Information' as linked here (https://data.cms.gov/provider-data/dataset/4pq5-n9py) - for Ownership Type
+### load dataset
+### The dataset provided 'Payroll Based Journal Daily Nursing Staff' as linked here (https://data.cms.gov/quality-of-care/payroll-based-journal-daily-nurse-staffing/data)
+### Supportive dataset 'Skilled Nursing Facility Quality Reporting Program Provider' as linked here (https://data.cms.gov/provider-data/dataset/fykj-qjee) - for CMS Region Data
+### Supportive dataset 'Provider Information' as linked here (https://data.cms.gov/provider-data/dataset/4pq5-n9py) - for Ownership Type
+```
+daily_nurse_staffing = pd.read_csv('.../PBJ_Daily_Nurse_Staffing_Q1_2024.csv', encoding='ISO-8859-1', low_memory = False)
+program_provider_data = pd.read_csv('.../Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Aug2024.csv', low_memory = False)
+nh_provider_info = pd.read_csv('.../NH_ProviderInfo_Aug2024.csv', low_memory = False)
+```
 
-daily_nurse_staffing = pd.read_csv('C:/Users/ishap/OneDrive/Desktop/Clipboard Health Sales Data Analyst/PBJ_Daily_Nurse_Staffing_Q1_2024.csv', encoding='ISO-8859-1', low_memory = False)
-program_provider_data = pd.read_csv('C:/Users/ishap/OneDrive/Desktop/Clipboard Health Sales Data Analyst/Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Aug2024.csv', low_memory = False)
-nh_provider_info = pd.read_csv('C:/Users/ishap/OneDrive/Desktop/Clipboard Health Sales Data Analyst/NH_ProviderInfo_Aug2024.csv', low_memory = False)
-
-# Initial Exploration
+## Initial Exploration
+```
 pd.set_option('display.max_columns', None)
+```
 
 # Merging Datasets
 nh_provider_info['CMS Certification Number (CCN)'] = nh_provider_info['CMS Certification Number (CCN)'].str.lstrip('0')
