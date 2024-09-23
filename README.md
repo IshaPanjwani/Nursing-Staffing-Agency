@@ -19,17 +19,17 @@
 
 ### Analysis For Recommendation 1: Optimize Contractor Utilization in the Northeast Region
 
-## Import libraries 
+### Import libraries 
 ```
 import pandas as pd 
 import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-### load dataset
-### The dataset provided 'Payroll Based Journal Daily Nursing Staff' as linked here (https://data.cms.gov/quality-of-care/payroll-based-journal-daily-nurse-staffing/data)
-### Supportive dataset 'Skilled Nursing Facility Quality Reporting Program Provider' as linked here (https://data.cms.gov/provider-data/dataset/fykj-qjee) - for CMS Region Data
-### Supportive dataset 'Provider Information' as linked here (https://data.cms.gov/provider-data/dataset/4pq5-n9py) - for Ownership Type
+### Load Dataset
+The dataset provided 'Payroll Based Journal Daily Nursing Staff' as linked here (https://data.cms.gov/quality-of-care/payroll-based-journal-daily-nurse-staffing/data)
+Supportive dataset 'Skilled Nursing Facility Quality Reporting Program Provider' as linked here (https://data.cms.gov/provider-data/dataset/fykj-qjee) - for CMS Region Data
+Supportive dataset 'Provider Information' as linked here (https://data.cms.gov/provider-data/dataset/4pq5-n9py) - for Ownership Type
 ```
 daily_nurse_staffing = pd.read_csv('.../PBJ_Daily_Nurse_Staffing_Q1_2024.csv', encoding='ISO-8859-1', low_memory = False)
 program_provider_data = pd.read_csv('.../Skilled_Nursing_Facility_Quality_Reporting_Program_Provider_Data_Aug2024.csv', low_memory = False)
@@ -41,7 +41,8 @@ nh_provider_info = pd.read_csv('.../NH_ProviderInfo_Aug2024.csv', low_memory = F
 pd.set_option('display.max_columns', None)
 ```
 
-# Merging Datasets
+### Merging Datasets
+```
 nh_provider_info['CMS Certification Number (CCN)'] = nh_provider_info['CMS Certification Number (CCN)'].str.lstrip('0')
 nh_provider = nh_provider_info[['CMS Certification Number (CCN)', 'Ownership Type']]
 
@@ -54,17 +55,48 @@ daily_nurse_staffing = daily_nurse_staffing.drop(columns=['CMS Region_x'], error
 daily_nurse_staffing = daily_nurse_staffing.merge(nh_provider, left_on = 'PROVNUM', right_on = 'CMS Certification Number (CCN)', how = 'inner')
 
 daily_nurse_staffing = daily_nurse_staffing.merge(cms_region, left_on = 'PROVNUM', right_on = 'CMS Certification Number (CCN)', how = 'inner')
+```
+```
 daily_nurse_staffing.head()
+	PROVNUM	PROVNAME	CITY	STATE	COUNTY_NAME	COUNTY_FIPS	CY_Qtr	WorkDate	MDScensus	Hrs_RNDON	Hrs_RNDON_emp	Hrs_RNDON_ctr	Hrs_RNadmin	Hrs_RNadmin_emp	Hrs_RNadmin_ctr	Hrs_RN	Hrs_RN_emp	Hrs_RN_ctr	Hrs_LPNadmin	Hrs_LPNadmin_emp	Hrs_LPNadmin_ctr	Hrs_LPN	Hrs_LPN_emp	Hrs_LPN_ctr	Hrs_CNA	Hrs_CNA_emp	Hrs_CNA_ctr	Hrs_NAtrn	Hrs_NAtrn_emp	Hrs_NAtrn_ctr	Hrs_MedAide	Hrs_MedAide_emp	Hrs_MedAide_ctr	CMS Certification Number (CCN)_x	Ownership Type	CMS Certification Number (CCN)_y	CMS Region
+0	105001	BEDROCK REHABILITATION AND NURSING CENTER AT LAKE	EUSTIS	FL	Lake	69	2024Q1	20240101	85	0.0	0.0	0.0	0.0	0.0	0.0	26.75	0.75	26.00	0.0	0.0	0.0	68.75	50.00	18.75	192.75	177.50	15.25	0.0	0.0	0.0	0.0	0.0	0.0	105001	For profit - Limited Liability company	105001	4
+1	105001	BEDROCK REHABILITATION AND NURSING CENTER AT LAKE	EUSTIS	FL	Lake	69	2024Q1	20240102	86	8.0	8.0	0.0	0.0	0.0	0.0	55.25	32.00	23.25	16.0	16.0	0.0	56.25	51.00	5.25	181.75	181.75	0.00	0.0	0.0	0.0	0.0	0.0	0.0	105001	For profit - Limited Liability company	105001	4
+2	105001	BEDROCK REHABILITATION AND NURSING CENTER AT LAKE	EUSTIS	FL	Lake	69	2024Q1	20240103	86	8.0	8.0	0.0	0.0	0.0	0.0	37.00	32.00	5.00	8.0	8.0	0.0	75.50	63.25	12.25	183.75	183.75	0.00	0.0	0.0	0.0	0.0	0.0	0.0	105001	For profit - Limited Liability company	105001	4
+3	105001	BEDROCK REHABILITATION AND NURSING CENTER AT LAKE	EUSTIS	FL	Lake	69	2024Q1	20240104	85	8.0	8.0	0.0	0.0	0.0	0.0	38.75	27.25	11.50	8.0	8.0	0.0	79.25	67.50	11.75	178.50	178.50	0.00	0.0	0.0	0.0	0.0	0.0	0.0	105001	For profit - Limited Liability company	105001	4
+4	105001	BEDROCK REHABILITATION AND NURSING CENTER AT LAKE	EUSTIS	FL	Lake	69	2024Q1	20240105	86	8.0	8.0	0.0	0.0	0.0	0.0	40.50	23.50	17.00	8.0	8.0	0.0	64.00	57.25	6.75	178.75	178.75	0.00	0.0	0.0	0.0	0.0	0.0	0.0	105001	For profit - Limited Liability company	105001	4
+```
+```
 daily_nurse_staffing.shape
 daily_nurse_staffing.describe()
+	COUNTY_FIPS	WorkDate	MDScensus	Hrs_RNDON	Hrs_RNDON_emp	Hrs_RNDON_ctr	Hrs_RNadmin	Hrs_RNadmin_emp	Hrs_RNadmin_ctr	Hrs_RN	Hrs_RN_emp	Hrs_RN_ctr	Hrs_LPNadmin	Hrs_LPNadmin_emp	Hrs_LPNadmin_ctr	Hrs_LPN	Hrs_LPN_emp	Hrs_LPN_ctr	Hrs_CNA	Hrs_CNA_emp	Hrs_CNA_ctr	Hrs_NAtrn	Hrs_NAtrn_emp	Hrs_NAtrn_ctr	Hrs_MedAide	Hrs_MedAide_emp	Hrs_MedAide_ctr	CMS Region
+count	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06	1.168349e+06
+mean	9.666703e+01	2.024022e+07	8.322709e+01	5.207907e+00	5.110152e+00	9.775493e-02	1.037145e+01	1.014003e+01	2.314231e-01	3.458668e+01	3.144862e+01	3.138058e+00	6.468675e+00	6.387991e+00	8.068396e-02	6.511510e+01	5.829209e+01	6.823001e+00	1.678592e+02	1.543410e+02	1.351816e+01	4.220481e+00	4.149855e+00	7.062585e-02	9.135017e+00	8.895399e+00	2.396177e-01	4.972973e+00
+std	1.029178e+02	8.300737e+01	5.014031e+01	4.550699e+00	4.540774e+00	9.302403e-01	1.492021e+01	1.466716e+01	1.842825e+00	3.551036e+01	3.198277e+01	1.113826e+01	1.054717e+01	1.044646e+01	1.369884e+00	4.804680e+01	4.394313e+01	1.672170e+01	1.145248e+02	1.063284e+02	3.348222e+01	1.292254e+01	1.249961e+01	2.247619e+00	1.819018e+01	1.777193e+01	2.244691e+00	2.076984e+00
+min	1.000000e+00	2.024010e+07	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	1.000000e+00
+25%	3.100000e+01	2.024012e+07	5.000000e+01	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	1.288000e+01	1.200000e+01	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	3.184000e+01	2.687000e+01	0.000000e+00	9.397000e+01	8.500000e+01	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	4.000000e+00
+50%	7.300000e+01	2.024022e+07	7.500000e+01	8.000000e+00	8.000000e+00	0.000000e+00	7.500000e+00	7.500000e+00	0.000000e+00	2.550000e+01	2.414000e+01	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	5.560000e+01	4.925000e+01	0.000000e+00	1.437100e+02	1.323200e+02	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	5.000000e+00
+75%	1.230000e+02	2.024031e+07	1.050000e+02	8.000000e+00	8.000000e+00	0.000000e+00	1.600000e+01	1.600000e+01	0.000000e+00	4.475000e+01	4.128000e+01	0.000000e+00	8.750000e+00	8.700000e+00	0.000000e+00	8.750000e+01	7.941000e+01	6.700000e+00	2.120000e+02	1.970400e+02	1.183000e+01	0.000000e+00	0.000000e+00	0.000000e+00	1.217000e+01	1.200000e+01	0.000000e+00	6.000000e+00
+max	8.400000e+02	2.024033e+07	7.430000e+02	3.277500e+02	3.277500e+02	4.200000e+01	2.661500e+02	2.661500e+02	9.250000e+01	9.086200e+02	9.041500e+02	4.305900e+02	2.468000e+02	2.468000e+02	1.543700e+02	6.146500e+02	6.039800e+02	4.540000e+02	1.857740e+03	1.573080e+03	6.943000e+02	4.520000e+02	2.552500e+02	2.805000e+02	3.956500e+02	3.956500e+02	1.289000e+02	1.000000e+01
+```
+```
 # Check for missing values
 # print(daily_nurse_staffing.isnull().sum())
 daily_nurse_staffing = daily_nurse_staffing.dropna()
 daily_nurse_staffing = daily_nurse_staffing.drop_duplicates()
+```
+```
 Listing states for Q1 2024 PBJ Daily Nurse Staffing
 states = daily_nurse_staffing['STATE'].unique()
 states
+array(['FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME',
+       'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+       'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC',
+       'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'CA'],
+      dtype=object)
+```
+
 Lets look for concentration of full-time employees hours / contract employees hours by State
+```
 total_hours = daily_nurse_staffing.groupby('STATE').agg({
     'Hrs_RNDON' : 'sum',
     'Hrs_RNadmin' : 'sum',
@@ -132,6 +164,7 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
+```
 - The chart above shows working hours distribution for Q1 2024 of Full-time employees and contractors. 
 - The key insights from the chart above is that there is a clear trend showing **a preference for full-time employment across all states**.
 Now, let's add information about region and collect more information on contributions by contractors.
