@@ -273,6 +273,8 @@ plt.grid(True, axis = 'x')
 # Show plot
 plt.show()
 ```
+<img src="https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Full-time_Contractor%20Distribution%20by%20State.png?raw=true" width="70%" height="70%">
+
 
 - From the chart, **Northeastern states (NJ, PA, NH, ME, VT)** have the high percentage of contractor employees with highest in Vermont.
 - In contrast, states such as **AL, AR, FL, NV, and OK** show the lowest percentage of contractor employees. These states are all located in the **Southern** and **Western** regions of the USA, indicating a regional trend where there is a lower reliance on contractor staffing in these areas.
