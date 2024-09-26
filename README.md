@@ -165,7 +165,7 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 ```
-<img src="https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Full-time_Contractor%20Distribution%20by%20State.png?raw=true" width="70%" height="70%">
+![Full time / Contractor Distribution](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Full-time_Contractor%20Distribution%20by%20State.png?raw=true)
 - The chart above shows working hours distribution for Q1 2024 of Full-time employees and contractors. 
 - The key insights from the chart above is that there is a clear trend showing a preference for full-time employment across all states.
 
