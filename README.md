@@ -165,12 +165,12 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 ```
-
-https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Full-time_Contractor%20Distribution%20by%20State.png?raw=true
-
+<img src="https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Full-time_Contractor%20Distribution%20by%20State.png?raw=true" width="70%" height="70%">
 - The chart above shows working hours distribution for Q1 2024 of Full-time employees and contractors. 
-- The key insights from the chart above is that there is a clear trend showing **a preference for full-time employment across all states**.
+- The key insights from the chart above is that there is a clear trend showing a preference for full-time employment across all states.
+
 Now, let's add information about region and collect more information on contributions by contractors.
+```
 state_to_region = {
     # Northeast
     'ME': 'Northeast', 'NH': 'Northeast', 'VT': 'Northeast', 'MA': 'Northeast', 'RI': 'Northeast', 'CT': 'Northeast',
@@ -272,6 +272,8 @@ plt.grid(True, axis = 'x')
 
 # Show plot
 plt.show()
+```
+
 - From the chart, **Northeastern states (NJ, PA, NH, ME, VT)** have the high percentage of contractor employees with highest in Vermont.
 - In contrast, states such as **AL, AR, FL, NV, and OK** show the lowest percentage of contractor employees. These states are all located in the **Southern** and **Western** regions of the USA, indicating a regional trend where there is a lower reliance on contractor staffing in these areas.
 <br>
