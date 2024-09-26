@@ -319,7 +319,7 @@ plt.title('Heatmap of Nurse Category Distribution by State')
 
 plt.show()
 ```
-![Heatmap of Nurse Category Distribution by State] (https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Heatmap%20of%20Nurse%20Category%20Distribution%20by%20State.png?raw=true)
+![Heatmap of Nurse Category Distribution by State](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Heatmap%20of%20Nurse%20Category%20Distribution%20by%20State.png?raw=true)
 
 - This chart clearly has an outlier on `Hrs_MedAide_ctr`. So, let's remove it and see the details. We can investigate `Hrs_MedAide_ctr` separately.
 
@@ -397,9 +397,10 @@ plt.show()
 
 This boxplot highlights a general trend of low contractor reliance for Medical Aides across most states which is negligible, but **IL (79%) and WV (100%)** have higher demands for contractors.
 
----
+
 
 <h3>Analysis For Recommendation 3: Address Staffing Needs for Certified Nursing Assistant (CNA), Licensed Practical Nurse (LPN), and Registered Nurse (RN)</h3>
+
 ```
 categories = [
     'Hrs_RNDON_ctr',
@@ -473,6 +474,7 @@ Key Insights:
   - **Registered Nurse (RN)** contractor hours remain consistently low in all regions, indicating a possible preference for **permanent employment** in these roles.
 
 Let's explore the top three nursing categories that account for the highest contractor hours across each **CMS (Centers for Medical & Medicaid Services) region**:
+
 ```
 categories = [
     'Hrs_RN_ctr',
@@ -529,13 +531,15 @@ Denver               2.58         3.10        14.93
 San Francisco        1.38         3.28         9.04
 Seattle              2.70         5.80        14.11
 ```
-!Contractor Hours/Day or top 3 categories in CMS region](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Contractor%20hours-day%20for%20top%203%20categories%20in%20CMS%20Region.png?raw=true)
+
+![Contractor Hours-Day or top 3 categories in CMS region](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Contractor%20hours-day%20for%20top%203%20categories%20in%20CMS%20Region.png?raw=true)
 
 - The graph illustrates contractor hours per day for the top three nursing roles ordered by **Certified Nursing Assistant (CNA)**, **Licensed Practical Nurse (LPN)**, **Registered Nurse (RN)** across various CMS regions.  
 - This analysis highlights that contractor employment is primarily concentrated in **Certified Nursing Assistants (CNA)** across all CMS regions, with **Regions New York, Philadelphia, and Boston** having the highest contractor hours.
 
 
 <h3>Analysis For Recommendation 4: Strengthen Partnerships with Government Sectors</h3>
+
 ```
 categories = [
     'Hrs_RNDON_ctr',
@@ -564,11 +568,13 @@ plt.title('Total Contractor Hours per Day for each Ownership Type')
 plt.gca().invert_yaxis()  
 plt.show()
 ```
+
 ![Total Contractor hours by Ownership Type](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Total%20Contractor%20hours%20per%20day%20for%20Ownership%20types.png?raw=true)
 
 This graph shows total contactor hours, highlighting the obvious that corporations and LLCs are the bigger clients of billable hours!
 Let's look at the average contractor hours by day accross US different ownership types.
 Average Contract Hours (all categories) in each Ownership Type:
+
 ```
 categories = [
     'Hrs_RNDON_ctr',
@@ -610,9 +616,11 @@ plt.title('Avg Contractor Hours for each Ownership type')
 plt.gca().invert_yaxis()  
 plt.show()
 ```
+
 ![Average Contractor Hours for each ownership type](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Average%20contractor%20hours%20per%20ownershp%20type.png?raw=true)
 
 This analysis suggests that government entities, especially at the state and city levels, may be ideal targets for contractor staffing services, while non-profits and smaller for-profit organizations might present limited demand.
+
 ```
 ctr_columns = [col for col in daily_nurse_staffing.columns if 'ctr' in col]
 
@@ -655,6 +663,7 @@ Government - City/county        12.46        5.96        31.97
 Government - County             10.37        3.93        21.00
 Government - State              14.35        7.42        48.02
 ```
+
 ![Avg Cotractor hours by Ownership type for 3 ownerships](https://github.com/IshaPanjwani/Nursing-Staffing-Agency/blob/main/Avg%20Contractor%20Hours%20by%20Category%20for%20top%203%20ownership%20types.png?raw=true)
 
 This breakdown reveals that CNA contractors are in highest demand in government facilities, particularly state-owned ones. This trend suggests that staffing strategies could prioritize CNA recruitment when targeting government entities.
