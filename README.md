@@ -281,9 +281,10 @@ plt.show()
 - In contrast, states such as **AL, AR, FL, NV, and OK** show the lowest percentage of contractor employees. These states are all located in the **Southern** and **Western** regions of the USA, indicating a regional trend where there is a lower reliance on contractor staffing in these areas.
 <br>
 <br>
----
+
 
 <h3>Analysis For Recommendation 2: Focus on Medicaid contractor staffing for Illinois and West Virginia</h3>
+
 ```
 new_result = pd.DataFrame()
 new_result['STATE'] = daily_nurse_staffing['STATE'].unique()
